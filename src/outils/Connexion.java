@@ -74,7 +74,7 @@ public class Connexion
         {
             try
             {
-                instance = new Connexion("benosmane","developpeur");
+                instance = new Connexion("AdminBJava","123");
             }
             catch(Exception e)
             {
