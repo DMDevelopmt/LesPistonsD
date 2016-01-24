@@ -7,11 +7,9 @@ package fenetres;
 import dao.*;
 import entite.Lot;
 import entite.Piece;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import modeles.*;
-import rendus.*;
+import outils.OutilsAlpha;
 
 /**
  *
@@ -23,7 +21,8 @@ public class Controle extends javax.swing.JFrame {
      * Creates new form Controle
      */
     
-    Piece pieceCourante;
+    private Piece pieceCourante;
+    private int nbPiecesRestantes;
     public Controle() {
         initComponents();
         
@@ -80,6 +79,8 @@ public class Controle extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         labelNumLot = new javax.swing.JLabel();
         comboLots = new javax.swing.JComboBox();
+        labelNbPieces = new javax.swing.JLabel();
+        labelNbPR = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel16 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -402,6 +403,10 @@ public class Controle extends javax.swing.JFrame {
             }
         });
 
+        labelNbPieces.setText("Nombre de Pièces restantes ");
+
+        labelNbPR.setText("0");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -410,8 +415,12 @@ public class Controle extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelNumLot, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
-                .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(comboLots, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelNbPieces)
+                .addGap(18, 18, 18)
+                .addComponent(labelNbPR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,7 +428,9 @@ public class Controle extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNumLot, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboLots, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                    .addComponent(comboLots, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                    .addComponent(labelNbPieces)
+                    .addComponent(labelNbPR))
                 .addContainerGap())
         );
 
@@ -520,6 +531,20 @@ public class Controle extends javax.swing.JFrame {
         texteDiametreHL.setText("");
         texteDiametreHT.setText("");
         texteCommRebut.setText("");
+        
+        nbPiecesRestantes = (comboLots.getSelectedItem() == null ? 0 :
+                ManagerLot.nombrePiecesRestantes(((Lot)comboLots.getSelectedItem()).getNumLot()));
+    }
+    /**
+     * Cette fonction retourne vrai si tous les champs des côtes sont valides
+     * @return 
+     */
+    private boolean verifChamps()
+    {
+        return OutilsAlpha.estDecimal(texteDiametreBL.getText().trim())
+                && OutilsAlpha.estDecimal(texteDiametreBT.getText().trim())
+                && OutilsAlpha.estDecimal(texteDiametreHL.getText().trim())
+                && OutilsAlpha.estDecimal(texteDiametreHT.getText().trim());
     }
     /**
      * Cette fonction retourne true si au moins un des champs de saisie des côtes
@@ -580,6 +605,13 @@ public class Controle extends javax.swing.JFrame {
             //appel d'une JOptionPane pour alerter l'utilisateur
             JOptionPane.showMessageDialog(null, "Veuillez entrer toutes les côtes", "Champ Absent", JOptionPane.ERROR_MESSAGE);
         }
+        else if (!verifChamps())
+        {
+            //mise à jour de la barre d'état
+            labelSBar.setText("Format Champ Incorrect");
+            //appel d'une JOptionPane pour alerter l'utilisateur
+            JOptionPane.showMessageDialog(null, "Format Côtes incorrect", "Format Champ Incorrect", JOptionPane.ERROR_MESSAGE);
+        }
         else{
             //Création d'un nouvel objet Pièce pour l'appel de la procédure stockée 
             //"enregistrerPiece via la Classe ManagerPiece
@@ -599,10 +631,20 @@ public class Controle extends javax.swing.JFrame {
             labelNomCategorie.setText("" + pieceCourante.getNomCategorie());
             //réinitialisation des JTexts pour faciliter la prochaine saisie
             initChampsSaisie();
-            //mise à jour de la comboBox
-            comboLots.setModel(new modeles.ModelComboLots());
-            comboLots.setSelectedItem(pieceCourante.getNumLot());
-            }
+            
+            //actualise la valeur du nombre de Pieces restantes
+            nbPiecesRestantes = (comboLots.getSelectedItem() == null ? 0 :
+                ManagerLot.nombrePiecesRestantes(((Lot)comboLots.getSelectedItem()).getNumLot()));
+            labelNbPR.setText("" + nbPiecesRestantes);
+            //mise à jour de la comboBox si fin de lot
+            if (nbPiecesRestantes == 0)
+            {
+                JOptionPane.showMessageDialog(null, "Lot terminé", "Lot Terminé", JOptionPane.INFORMATION_MESSAGE);
+                comboLots.setModel(new modeles.ModelComboLots());
+            }   
+            
+        }
+                
                 
     }//GEN-LAST:event_bValiderActionPerformed
 
@@ -618,7 +660,9 @@ public class Controle extends javax.swing.JFrame {
     }//GEN-LAST:event_texteDiametreHLActionPerformed
 
     private void comboLotsItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboLotsItemStateChanged
-        
+           nbPiecesRestantes = (comboLots.getSelectedItem() == null ? 0 :
+                ManagerLot.nombrePiecesRestantes(((Lot)comboLots.getSelectedItem()).getNumLot()));
+            labelNbPR.setText("" + nbPiecesRestantes);
     }//GEN-LAST:event_comboLotsItemStateChanged
 
     private void comboLotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLotsActionPerformed
@@ -689,6 +733,8 @@ public class Controle extends javax.swing.JFrame {
     private javax.swing.JLabel labelHL;
     private javax.swing.JLabel labelHT;
     private javax.swing.JLabel labelIdPiece;
+    private javax.swing.JLabel labelNbPR;
+    private javax.swing.JLabel labelNbPieces;
     private javax.swing.JLabel labelNomCategorie;
     private javax.swing.JLabel labelNumLot;
     private javax.swing.JLabel labelPieceCourante;

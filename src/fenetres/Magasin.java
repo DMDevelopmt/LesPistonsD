@@ -62,9 +62,9 @@ public class Magasin extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         saisieQuantite = new javax.swing.JTextField();
         Combo_modele = new javax.swing.JComboBox();
-        bouttonGrand = new javax.swing.JButton();
+        boutonGros = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        bouttonMoyen = new javax.swing.JButton();
+        boutonMoyen = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         boutonPetit = new javax.swing.JButton();
         barStatusMagasin = new javax.swing.JLabel();
@@ -151,21 +151,26 @@ public class Magasin extends javax.swing.JFrame {
             }
         });
 
-        bouttonGrand.setBackground(new java.awt.Color(204, 204, 0));
-        bouttonGrand.setText("Grand");
-        bouttonGrand.addMouseListener(new java.awt.event.MouseAdapter() {
+        boutonGros.setBackground(new java.awt.Color(204, 204, 0));
+        boutonGros.setText("Gros");
+        boutonGros.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bouttonGrandMouseClicked(evt);
+                boutonGrosMouseClicked(evt);
+            }
+        });
+        boutonGros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonGrosActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Nombre de Caisses");
 
-        bouttonMoyen.setBackground(new java.awt.Color(153, 0, 0));
-        bouttonMoyen.setText("Moyen");
-        bouttonMoyen.addMouseListener(new java.awt.event.MouseAdapter() {
+        boutonMoyen.setBackground(new java.awt.Color(153, 0, 0));
+        boutonMoyen.setText("Moyen");
+        boutonMoyen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bouttonMoyenMouseClicked(evt);
+                boutonMoyenMouseClicked(evt);
             }
         });
 
@@ -198,9 +203,9 @@ public class Magasin extends javax.swing.JFrame {
                         .addGap(88, 88, 88)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Combo_modele, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bouttonMoyen, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(boutonMoyen, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(86, 86, 86)
-                        .addComponent(bouttonGrand, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(boutonGros, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(232, 232, 232)
@@ -208,7 +213,7 @@ public class Magasin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {boutonPetit, bouttonGrand, bouttonMoyen});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {boutonGros, boutonMoyen, boutonPetit});
 
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,8 +226,8 @@ public class Magasin extends javax.swing.JFrame {
                             .addComponent(Combo_modele, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(bouttonMoyen, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bouttonGrand, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(boutonMoyen, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boutonGros, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addComponent(boutonPetit, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -233,7 +238,7 @@ public class Magasin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {boutonPetit, bouttonGrand, bouttonMoyen});
+        jPanel4Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {boutonGros, boutonMoyen, boutonPetit});
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -399,15 +404,15 @@ public class Magasin extends javax.swing.JFrame {
         System.out.println(tailleModele);
     }//GEN-LAST:event_boutonPetitMouseClicked
 
-    private void bouttonMoyenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bouttonMoyenMouseClicked
+    private void boutonMoyenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonMoyenMouseClicked
         tailleModele = "Moyen";
         System.out.println(tailleModele);
-    }//GEN-LAST:event_bouttonMoyenMouseClicked
+    }//GEN-LAST:event_boutonMoyenMouseClicked
 
-    private void bouttonGrandMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bouttonGrandMouseClicked
-    tailleModele = "Grand";
+    private void boutonGrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonGrosMouseClicked
+    tailleModele = "Gros";
     System.out.println(tailleModele);
-    }//GEN-LAST:event_bouttonGrandMouseClicked
+    }//GEN-LAST:event_boutonGrosMouseClicked
 
     private void bouttonStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bouttonStockMouseClicked
         new Stocks().setVisible(true);
@@ -448,6 +453,10 @@ public class Magasin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bouttonStockActionPerformed
 
+    private void boutonGrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonGrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boutonGrosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -487,10 +496,10 @@ public class Magasin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Combo_modele;
     private javax.swing.JLabel barStatusMagasin;
+    private javax.swing.JButton boutonGros;
+    private javax.swing.JButton boutonMoyen;
     private javax.swing.JButton boutonPetit;
     private javax.swing.JButton bouttonEntree;
-    private javax.swing.JButton bouttonGrand;
-    private javax.swing.JButton bouttonMoyen;
     private javax.swing.JButton bouttonQuiter;
     private javax.swing.JButton bouttonSortie;
     private javax.swing.JButton bouttonStock;

@@ -579,8 +579,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelNumLot" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                      <Component id="comboLots" min="-2" pref="151" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="comboLots" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="labelNbPieces" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="labelNbPR" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -591,6 +595,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelNumLot" alignment="3" max="32767" attributes="0"/>
                           <Component id="comboLots" alignment="3" pref="22" max="32767" attributes="0"/>
+                          <Component id="labelNbPieces" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNbPR" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -616,6 +622,16 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="comboLots.setRenderer(new rendus.RenduComboLots());"/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelNbPieces">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre de Pi&#xe8;ces restantes "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelNbPR">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="0"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

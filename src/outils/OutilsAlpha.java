@@ -40,6 +40,11 @@ public class OutilsAlpha
 		return s != null && s.matches("^[0-9]{5}$");
 	}
         
+        public static boolean estDecimal(String s)
+	{
+		return s != null && s.matches("[0-9.]+");
+	}
+        
         public static boolean estDecimalNonNul(String s)
 	{
 		return s != null && s.matches("[0-9.]+") && !s.matches("[0]+");

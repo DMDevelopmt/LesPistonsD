@@ -9,7 +9,6 @@ import dao.ManagerMachine;
 import dao.ManagerModele;
 import entite.Machine;
 import entite.Modele;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modeles.*;
 import outils.OutilsAlpha;

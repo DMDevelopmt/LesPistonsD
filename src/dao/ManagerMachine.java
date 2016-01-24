@@ -78,6 +78,12 @@ public class ManagerMachine {
         }
         
     }
+    /**
+     * Cette fonction est appelée par le modèle du tableau de presse, fenêtre 
+     * production
+     * 4 Colonnes : Numéro Presse, Nom Presse, Etat, Prod précédente
+     * @return 
+     */
     public static ArrayList<String> ListeColonnesPresse()
     {
          try {

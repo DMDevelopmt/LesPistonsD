@@ -339,4 +339,35 @@ public class ManagerLot {
         e.printStackTrace();
     }
     }
+    
+    /**
+     * Cette fonction donne le nombre de pièces restantes pour la fabrication d'un
+     * lot donné en paramètre
+     * @param numeroLot numéro du lot à traiter
+     * @return 
+     */
+    public static int nombrePiecesRestantes(int numeroLot)
+    {
+        try
+        {
+            //FUNCTION [dbo].nbPiecesRestantes(@numLot TypeNumLot)
+            CallableStatement cs =Connexion.getInstance().getConn().prepareCall (
+                "{? = call [dbo].nbPiecesRestantes (?)}");
+            
+            cs.registerOutParameter(1, java.sql.Types.INTEGER);
+            
+            cs.setInt(2,numeroLot);//numero lot
+            
+            cs.execute();
+            
+            return cs.getInt(1);
+            
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return 0;
+        }
+        
+    }
 }
