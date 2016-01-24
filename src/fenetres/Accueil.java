@@ -28,9 +28,9 @@ exec sp_adduser JavaUser4, responsableQualite
 exec sp_adduser JavaUser5, responsableGestion
     */
     private final String RESPONSABLEAPP = "AdminBJava";
-    private final String RESPONSABLEATELIER ="JavaUser5";
+    private final String RESPONSABLEATELIER ="JavaUser2";
     private final String RESPONSABLEGESTION ="JavaUser1";
-    private final String RESPONSABLEMAGASIN = "JavaUser2";
+    private final String RESPONSABLEMAGASIN = "JavaUser5";
     private final String RESPONSABLECONTROLE = "JavaUser4";
     private final String RESPONSABLEPROD = "JavaUser3";
     private final String RESPONSABLEQUALITE = "JavaUser6";
