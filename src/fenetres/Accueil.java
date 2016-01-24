@@ -20,13 +20,28 @@ import outils.Connexion;
 public class Accueil extends javax.swing.JFrame {
 
     
-    //private final String roleRespApp = "addaboudjellal";
-    private final String roleRespApp = "AdminBJava";
-    private final String roleRespAtelier ="delecourt";
-    private final String roleRespMagasin = "bouyadel";
-    private final String roleRespControl = "mayer";
-    private final String roleRespGestion = "benosmane";
-    
+/*
+exec sp_adduser JavaUser1, responsablePlanif;
+exec sp_adduser JavaUser2, responsableProd;
+exec sp_adduser JavaUser3, responsableControle;
+exec sp_adduser JavaUser4, responsableQualite
+exec sp_adduser JavaUser5, responsableGestion
+    */
+    private final String RESPONSABLEAPP = "AdminBJava";
+    private final String RESPONSABLEATELIER ="JavaUser5";
+    private final String RESPONSABLEGESTION ="JavaUser1";
+    private final String RESPONSABLEMAGASIN = "JavaUser2";
+    private final String RESPONSABLECONTROLE = "JavaUser4";
+    private final String RESPONSABLEPROD = "JavaUser3";
+    private final String RESPONSABLEQUALITE = "JavaUser6";
+    /*
+    private final String RESPONSABLEAPP = "AdminBJava";
+    private final String RESPONSABLEGESTION ="benosmane";
+    private final String RESPONSABLEMAGASIN = "bouyadel";
+    private final String RESPONSABLECONTROLE = "mayer";
+    private final String RESPONSABLEPROD = "delecourt";
+    private final String RESPONSABLEQUALITE = "addaboudjellal";
+    */
     
     /*
     private final String roleRespMagasin = "bouyadel";
@@ -264,20 +279,37 @@ public class Accueil extends javax.swing.JFrame {
 
                     switch (login)
                     {
-                        case roleRespApp :  GestionBis gb = new GestionBis();
+                        case RESPONSABLEAPP :  GestionBis gb = new GestionBis();
                                             gb.addWindowListener(new EcouteFenetre());
                                             setVisible(false);
                                            
-                    break;
-                    case roleRespAtelier : new Planification1();
-                    break;
-                    case roleRespMagasin : new Magasin();
-                    break;
-                    case roleRespControl : new Controle();
-                    break;
-                    case roleRespGestion : new GestionBis();
-                        
-                        default : new StatistiquesReduites();
+                                                break;
+                    case RESPONSABLEATELIER : Planification1 plan = new Planification1();
+                                               plan.addWindowListener(new EcouteFenetre());
+                                               setVisible(false);
+                                                break;
+                    case RESPONSABLEMAGASIN : Magasin mag = new Magasin();
+                                                mag.addWindowListener(new EcouteFenetre());
+                                               setVisible(false);
+                                                break;
+                    case RESPONSABLECONTROLE : Controle contr = new Controle();
+                                                contr.addWindowListener(new EcouteFenetre());
+                                               setVisible(false);
+                                                break;
+                    case RESPONSABLEPROD : Production1 prod = new Production1();
+                                            prod.addWindowListener(new EcouteFenetre());
+                                               setVisible(false);
+                                               break;
+                    case RESPONSABLEGESTION : GestionBis gest = new GestionBis();
+                                            gest.addWindowListener(new EcouteFenetre());
+                                               setVisible(false);
+                                               break;
+                    case RESPONSABLEQUALITE : StatistiquesReduites stats = new StatistiquesReduites();
+                                            stats.addWindowListener(new EcouteFenetre());
+                                               setVisible(false);
+                                               break;
+                    
+                    default : System.exit(0);
                     }
 
                     setVisible(false);
