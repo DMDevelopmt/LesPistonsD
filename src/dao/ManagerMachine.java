@@ -47,7 +47,7 @@ public class ManagerMachine {
              ResultSetMetaData md = rs.getMetaData();
              int i = 1;
             
-            while(rs.next())
+            while ( i <= md.getColumnCount())
             {
                     liste.add(md.getColumnName(i));
                     i++;
@@ -68,7 +68,7 @@ public class ManagerMachine {
              
             while ( rs.next())
             {
-                    liste.add(new Machine(rs.getInt(1),rs.getString(2),rs.getString(4), rs.getString(4)));
+                    liste.add(new Machine(rs.getInt(1),rs.getString(2),rs.getString(3), rs.getString(4)));
                    
             }
             return liste;

@@ -679,8 +679,7 @@ public class Controle extends javax.swing.JFrame {
              "Confirmation",
              JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
         {
-            new fenetres.Accueil();
-            setVisible(false);
+            dispose();
         }
     }//GEN-LAST:event_bQuitterActionPerformed
 

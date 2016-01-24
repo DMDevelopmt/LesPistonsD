@@ -20,6 +20,7 @@ import outils.OutilsAlpha;
  */
 public class Planification1 extends javax.swing.JFrame {
 
+    private MessageStatut mess;
     /**
      * Creates new form LancerLot
      */
@@ -312,8 +313,7 @@ public class Planification1 extends javax.swing.JFrame {
              "Confirmation",
              JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
         {
-            new fenetres.Accueil();
-            setVisible(false);
+            dispose();
         }
     }//GEN-LAST:event_bquitterActionPerformed
 
@@ -336,9 +336,12 @@ public class Planification1 extends javax.swing.JFrame {
         {
         String modele=((Modele)cModele.getSelectedItem()).getModele();
         int quantite=(int) Integer.parseInt(tQuantite.getText());
-        String mess= dao.ManagerLot.planifierLot(modele, quantite);
+        mess = dao.ManagerLot.planifierLot(modele, quantite);
         tQuantite.setText("");
-        barStatusLot.setText(mess);
+        barStatusLot.setForeground(mess.getCouleur());
+            
+        barStatusLot.setText(mess.toString());
+        
         tableProdPlanif.setModel(new ModeleTableProdPlanif());
         }
     }//GEN-LAST:event_bValiderActionPerformed

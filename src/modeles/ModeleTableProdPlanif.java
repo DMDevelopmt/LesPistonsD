@@ -37,8 +37,8 @@ public class ModeleTableProdPlanif extends AbstractTableModel{
             case 1: return affich(liste.get(rowIndex).getModele());
             case 2: return affich(liste.get(rowIndex).getNbPiecesDemandees());
             case 3: return affich(liste.get(rowIndex).getDateDePlanification());
-            case 4: return affich(liste.get(rowIndex).getTypeNumPresse());
-            case 5: return affich(liste.get(rowIndex).getEtatDuLot());                   
+            case 4: return affich(liste.get(rowIndex).getEtatDuLot());   
+            case 5: return affich(liste.get(rowIndex).getTypeNumPresse());
             default: return affich(liste.get(rowIndex).getDateDeFabric());                 
            
     }

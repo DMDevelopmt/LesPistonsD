@@ -10,6 +10,7 @@ import modeles.ModeleTablePresse;
 import dao.*;
 import entite.Lot;
 import entite.Machine;
+import entite.MessageStatut;
 import entite.Modele;
 import javax.swing.JOptionPane;
 import modeles.*;
@@ -22,6 +23,7 @@ import rendus.*;
  */
 public class Production1 extends javax.swing.JFrame {
 
+    private MessageStatut mess;
     /**
      * Creates new form ProductionBis
      */
@@ -57,9 +59,9 @@ public class Production1 extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButtonActualiserProd = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTableprod = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTableprod = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jButtonValider = new javax.swing.JButton();
         jComboBoxLot = new javax.swing.JComboBox();
@@ -76,8 +78,8 @@ public class Production1 extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(202, 217, 230));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jScrollPane1.setViewportView(jTable1);
         jTable1.setModel(new ModeleTablePresse());
+        jScrollPane1.setViewportView(jTable1);
         jTable1.setDefaultRenderer(Object.class, new RenduTable());
 
         BactualiserPresse.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -110,8 +112,8 @@ public class Production1 extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BactualiserPresse, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -199,13 +201,13 @@ public class Production1 extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane2.setViewportView(jTableprod);
-        jTableprod.setModel(new ModeleTableProdPlanif());
-        jTableprod.setDefaultRenderer(Object.class, new RenduTable());
-
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 16)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PRODUCTION");
+
+        jTableprod.setModel(new ModeleTableProdPlanif());
+        jTableprod.setDefaultRenderer(Object.class, new RenduTable());
+        jScrollPane3.setViewportView(jTableprod);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -214,22 +216,24 @@ public class Production1 extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonActualiserProd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonActualiserProd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonActualiserProd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonActualiserProd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -388,12 +392,9 @@ public class Production1 extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusBar))
         );
 
@@ -427,8 +428,11 @@ public class Production1 extends javax.swing.JFrame {
         {
         int lot=((Lot)jComboBoxLot.getSelectedItem()).getNumLot();
         String presse= ((Machine)jComboBoxPresse.getSelectedItem()).getLibelle();
-        String mess= dao.ManagerLot.demarrerLot(lot, presse);        
-        statusBar.setText(mess);
+        mess = dao.ManagerLot.demarrerLot(lot, presse);        
+        
+        statusBar.setForeground(mess.getCouleur());
+            
+        statusBar.setText(mess.toString());
         jTable1.setModel(new ModeleTablePresse());
         }
     }//GEN-LAST:event_jButtonValiderActionPerformed
@@ -441,8 +445,10 @@ public class Production1 extends javax.swing.JFrame {
         else
         {
         int lot=((Lot)jComboBoxLot.getSelectedItem()).getNumLot();
-        String mess=dao.ManagerLot.changerEtatLot(lot);
-        statusBar.setText(mess);
+        mess=dao.ManagerLot.changerEtatLot(lot);
+        statusBar.setForeground(mess.getCouleur());
+            
+        statusBar.setText(mess.toString());
         jTable1.setModel(new ModeleTablePresse());
         }
     }//GEN-LAST:event_jButtonRedemarrerActionPerformed
@@ -460,8 +466,10 @@ public class Production1 extends javax.swing.JFrame {
         else
         {
         int lot=((Lot)jComboBoxLot.getSelectedItem()).getNumLot();
-        String mess=dao.ManagerLot.changerEtatLot(lot);
-        statusBar.setText(mess);
+        mess=dao.ManagerLot.changerEtatLot(lot);
+        statusBar.setForeground(mess.getCouleur());
+            
+        statusBar.setText(mess.toString());
         jTable1.setModel(new ModeleTablePresse());
         }
     }//GEN-LAST:event_jButtonLibereActionPerformed
@@ -474,8 +482,10 @@ public class Production1 extends javax.swing.JFrame {
         else
         {
         int lot=((Lot)jComboBoxLot.getSelectedItem()).getNumLot();
-        String mess=dao.ManagerLot.suspendreLot(lot);
-        statusBar.setText(mess);
+        mess=dao.ManagerLot.suspendreLot(lot);
+        statusBar.setForeground(mess.getCouleur());
+            
+        statusBar.setText(mess.toString());
         jTable1.setModel(new ModeleTablePresse());
         }
     }//GEN-LAST:event_jButtonSuspendreActionPerformed
@@ -486,8 +496,7 @@ public class Production1 extends javax.swing.JFrame {
              "Confirmation",
              JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
         {
-            new fenetres.Accueil();
-            setVisible(false);
+            dispose();
         }
     }//GEN-LAST:event_jButtonQuitterActionPerformed
 
@@ -552,7 +561,7 @@ public class Production1 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableprod;

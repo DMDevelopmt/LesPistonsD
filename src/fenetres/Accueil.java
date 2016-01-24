@@ -6,11 +6,13 @@
 package fenetres;
 
 
+import entite.MessageStatut;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import outils.Connexion;
+import outils.OutilsAlpha;
 
 
 /**
@@ -34,6 +36,8 @@ exec sp_adduser JavaUser5, responsableGestion
     private final String RESPONSABLECONTROLE = "JavaUser4";
     private final String RESPONSABLEPROD = "JavaUser3";
     private final String RESPONSABLEQUALITE = "JavaUser6";
+    
+    private MessageStatut statut;
     /*
     private final String RESPONSABLEAPP = "AdminBJava";
     private final String RESPONSABLEGESTION ="benosmane";
@@ -261,22 +265,42 @@ exec sp_adduser JavaUser5, responsableGestion
         if(jtLogUser.getText().trim().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Veuillez entrer un nom d'utilisateur", "Nom d'utilisateur", JOptionPane.ERROR_MESSAGE);
+            statut = new MessageStatut("Erreur : Champ nom utilisateur vide");
+            barStatusLogin.setForeground(statut.getCouleur());
+            barStatusLogin.setText(statut.toString());
+            
         }
         else if (jtPassword.getText().trim().isEmpty())
         {
             JOptionPane.showMessageDialog(null, "Veuillez entrer votre mot de passe", "Mot de passe", JOptionPane.ERROR_MESSAGE);
+            statut = new MessageStatut("Erreur : Champ mot de passe vide");
+            barStatusLogin.setForeground(statut.getCouleur());
+            barStatusLogin.setText(statut.toString());
+        }
+        else if(!OutilsAlpha.estAlphaNum(jtLogUser.getText().trim()))
+        {
+            JOptionPane.showMessageDialog(null, "Format nom utilisateur non valide", "Erreur Format Nom d'utilisateur", JOptionPane.ERROR_MESSAGE);
+            statut = new MessageStatut("Erreur : Format nom utilisateur non valide");
+            barStatusLogin.setForeground(statut.getCouleur());
+            barStatusLogin.setText(statut.toString());
         }
         else
         {
+             String login = jtLogUser.getText();
+             String password = jtPassword.getText();//TODO revoir le getText en getPassword.toString();
             try
             {
-                String login = jtLogUser.getText();
-                String password = jtPassword.getText();//TODO revoir le getText en getPassword.toString();
-
                 if(Connexion.getInstance(login, password).getConn().isValid(5))
                 {
                     //String role = ManagerConnexion.trouverRole(login);
 
+                    //Thread.sleep(500);
+                    statut = new MessageStatut("Connexion réussie");
+                    barStatusLogin.setForeground(statut.getCouleur());
+                    barStatusLogin.setText(statut.toString());
+                    
+                    
+                    //Thread.sleep(5000);
                     switch (login)
                     {
                         case RESPONSABLEAPP :  GestionBis gb = new GestionBis();
@@ -316,14 +340,22 @@ exec sp_adduser JavaUser5, responsableGestion
                 }
                 else
                 {
-                    barStatusLogin.setText("erreur de login ou mot de passe");
+                    JOptionPane.showMessageDialog(null, "Échec de l'ouverture de session de l'utilisateur " + login +
+                        ". \nVeuillez vérifier vos identifiants.", "Echec de Connexion", JOptionPane.ERROR_MESSAGE);
+                    statut = new MessageStatut("Erreur : Echec de Connexion");
+                    barStatusLogin.setForeground(statut.getCouleur());  
+                    barStatusLogin.setText(statut.toString());
                 }
 
             }
-            catch(SQLException e)
+            catch(Exception e)
             {
 
-                barStatusLogin.setText("erreur de login ou mot de passe");
+                JOptionPane.showMessageDialog(null, "Échec de l'ouverture de session de l'utilisateur " + login +
+                        ". \nVeuillez vérifier vos identifiants.", "Echec de Connexion", JOptionPane.ERROR_MESSAGE);
+                statut = new MessageStatut("Erreur : Echec de Connexion");
+                barStatusLogin.setForeground(statut.getCouleur());  
+                barStatusLogin.setText(statut.toString());
 
             }
         }
