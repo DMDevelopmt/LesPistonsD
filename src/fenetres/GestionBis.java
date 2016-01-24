@@ -587,7 +587,7 @@ public class GestionBis extends javax.swing.JFrame {
              "Confirmation",
              JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
         {
-            System.exit(0);
+            dispose();
         }
     }//GEN-LAST:event_jButton8ActionPerformed
 

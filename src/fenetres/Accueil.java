@@ -5,10 +5,10 @@
  */
 package fenetres;
 
-import dao.ManagerConnexion;
-import java.sql.Connection;
+
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 import outils.Connexion;
 
@@ -19,12 +19,14 @@ import outils.Connexion;
  */
 public class Accueil extends javax.swing.JFrame {
 
+    
     //private final String roleRespApp = "addaboudjellal";
     private final String roleRespApp = "AdminBJava";
     private final String roleRespAtelier ="delecourt";
     private final String roleRespMagasin = "bouyadel";
     private final String roleRespControl = "mayer";
     private final String roleRespGestion = "benosmane";
+    
     
     /*
     private final String roleRespMagasin = "bouyadel";
@@ -262,7 +264,10 @@ public class Accueil extends javax.swing.JFrame {
 
                     switch (login)
                     {
-                        case roleRespApp : new RespApp();
+                        case roleRespApp :  GestionBis gb = new GestionBis();
+                                            gb.addWindowListener(new EcouteFenetre());
+                                            setVisible(false);
+                                           
                     break;
                     case roleRespAtelier : new Planification1();
                     break;
@@ -333,6 +338,16 @@ public class Accueil extends javax.swing.JFrame {
                 new Accueil().setVisible(true);
             }
         });
+    }
+    class EcouteFenetre extends WindowAdapter
+    {
+
+                
+        @Override
+        public void windowClosed(WindowEvent e) {
+            Accueil.this.setVisible(true);
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
